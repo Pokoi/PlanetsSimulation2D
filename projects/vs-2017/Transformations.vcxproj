@@ -159,6 +159,7 @@
     <ClInclude Include="..\..\code\macros.hpp" />
     <ClInclude Include="..\..\code\Matrix.hpp" />
     <ClInclude Include="..\..\code\Model2D.hpp" />
+    <ClInclude Include="..\..\code\Orbit.hpp" />
     <ClInclude Include="..\..\code\Planet.hpp" />
     <ClInclude Include="..\..\code\Point.hpp" />
     <ClInclude Include="..\..\code\Rotation.hpp" />

@@ -1,9 +1,10 @@
 ﻿  Planet.cpp
-C:\Users\jesus\OneDrive\Escritorio\GalaxyPlanets\code\Planet.hpp(161,21): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\jesus\OneDrive\Escritorio\GalaxyPlanets\code\Planet.hpp(162,21): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+D:\Repositorios\PlanetsSimulation2D\code\Orbit.hpp(84,19): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+D:\Repositorios\PlanetsSimulation2D\code\Planet.cpp(51,24): warning C4018: '<': no coinciden signed/unsigned
   main.cpp
-C:\Users\jesus\OneDrive\Escritorio\GalaxyPlanets\code\Planet.cpp(51,24): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\jesus\OneDrive\Escritorio\GalaxyPlanets\code\Planet.hpp(161,21): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+D:\Repositorios\PlanetsSimulation2D\code\Planet.cpp(84,38): warning C4305: '+=': truncamiento de 'double' a 'float'
+D:\Repositorios\PlanetsSimulation2D\code\Orbit.hpp(84,19): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+D:\Repositorios\PlanetsSimulation2D\code\main.cpp(25,49): warning C4244: 'argumento': conversión de 'float' a 'unsigned int'; posible pérdida de datos
   Generando código...
-C:\Users\jesus\OneDrive\Escritorio\GalaxyPlanets\code\Planet.hpp(162,21): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-  Transformations.vcxproj -> C:\Users\jesus\OneDrive\Escritorio\GalaxyPlanets\projects\vs-2017\Debug\Transformations.exe
+D:\Repositorios\PlanetsSimulation2D\code\main.cpp(25,35): warning C4244: 'argumento': conversión de 'float' a 'unsigned int'; posible pérdida de datos
+  Transformations.vcxproj -> D:\Repositorios\PlanetsSimulation2D\projects\vs-2017\Debug\Transformations.exe

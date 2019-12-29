@@ -34,6 +34,7 @@
 #include "Vector.hpp"
 #include <math.h>
 #include <list>
+#include "Orbit.hpp"
 
 namespace sf { class RenderWindow; }
 
@@ -57,18 +58,17 @@ namespace planets
 		float			scale;
 			
 		float			linear_speed;
-		float			angular_speed;
-
-		float			offset_with_parent;
+		float			angular_speed;		
 		
 		list <Planet*>	childs;
 		Planet*			parent = nullptr;
 
 		float			radius;
+		Orbit			orbit;			
 
-	public:
+	public:		
 
-		Planet	( const int	number_vertex, const float	radius ) : radius(radius)
+		Planet	( const int	number_vertex, const float	radius) : radius(radius)
 		{
 			local_vertices.reserve(number_vertex);
 			set_vertex(number_vertex);
@@ -86,24 +86,17 @@ namespace planets
 		Planet(
 			const int	number_vertex,
 			const float	radius,
-			const float distance_to_parent,
-			Planet& parent
+			Planet &	parent,
+			Orbit  &	orbit
 		)
-			: radius(radius), offset_with_parent(distance_to_parent), parent(&parent)
+			: radius(radius), parent(&parent), orbit(orbit)
 		{
 			local_vertices.reserve(number_vertex);
 			set_vertex(number_vertex);
 			transformed_vertices.resize(local_vertices.size());
 
-			if (this->parent)
-			{
-				position = this->parent->get_position();
-				position += Vector2f{distance_to_parent, 0};
-			}
-			else
-			{
-				set_position(0, 0);
-			}
+			
+			set_position(0, 0);			
 
 			set_angle(0);
 			set_scale(1);
@@ -127,6 +120,11 @@ namespace planets
 		void set_angle(float new_angle)
 		{
 			angle = new_angle;
+		}
+
+		float get_angle()
+		{
+			return angle;
 		}
 
 		void set_scale(float new_scale)
@@ -156,20 +154,17 @@ namespace planets
 
 		void update(float delta)
 		{
+			
 			if (parent != nullptr)
-			{
-				float cos_angle = cos(linear_speed);
-				float sin_angle = sin(linear_speed);
-				float parent_x	= parent->get_position().coordinates().get_values()[0];
-				float parent_y	= parent->get_position().coordinates().get_values()[1];
-				float self_x	= position.coordinates().get_values()[0] - parent_x;
-				float self_y	= position.coordinates().get_values()[1] - parent_y;
+			{			
+				Vector2f new_position = orbit.Evaluate(linear_speed);
+				float x = new_position.coordinates().get_values()[0];
+				float y = new_position.coordinates().get_values()[1];
 								
-				float x = (cos_angle * self_x - sin_angle * self_y);
-				float y = (sin_angle * self_x + sin_angle * self_y);
+				x += parent->get_position().coordinates().get_values()[0] - orbit.get_foci_displacement();
+				y += parent->get_position().coordinates().get_values()[1];
 				
-				set_position(x, y);	
-				
+				set_position(x, y);
 			}
 			
 

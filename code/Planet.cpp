@@ -55,8 +55,10 @@ namespace planets
 
 		ConvexShape sfml_polygon;
 
+
 		sfml_polygon.setPointCount(number_of_vertices);
-		sfml_polygon.setFillColor(Color::Yellow);
+		sfml_polygon.setFillColor(Color::White);
+
 
 		for (int i = 0; i < number_of_vertices; i++)
 		{
@@ -70,6 +72,30 @@ namespace planets
 				)
 			);
 		}
+
+		//Draw orbit
+
+		if (parent)
+		{
+			CircleShape sfml_circle;
+			sfml_circle.setRadius(2.f);
+			sfml_circle.setFillColor(Color::Green);
+			
+			for (float i = 0; i < 1; i += 0.02)
+			{
+				Vector2f new_position = orbit.EvaluateWithoutUpdate(i);
+				float x = new_position.coordinates().get_values()[0];
+				float y = new_position.coordinates().get_values()[1];
+
+				x += parent->get_position().coordinates().get_values()[0] - orbit.get_foci_displacement();
+				y += parent->get_position().coordinates().get_values()[1];
+				
+				sfml_circle.setPosition(x, y);
+				renderer.draw(sfml_circle);
+			}
+
+		}
+
 
 		renderer.draw(sfml_polygon);
 
